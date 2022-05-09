@@ -1,0 +1,111 @@
+
+[NEAT]
+# Obter a pontuação máxima
+fitness_criterion     = max
+# Assim que a IA atigir a pontuação 1000 o jogo fecha.
+fitness_threshold     = 500
+# 100 pássaros a cada geração
+pop_size              = 100
+# False - Se houver a extinção de todas as espécie o jogo dá erro
+# True - Se houver a extinção de todas as espécie o jogo crie uma nova espécie do zero de novo
+reset_on_extinction   = False
+
+[DefaultGenome]
+# node activation options
+# tanh - tangente hiperbólica
+activation_default      = tanh
+activation_mutate_rate  = 0.0
+activation_options      = tanh
+
+# node aggregation options
+aggregation_default     = sum
+aggregation_mutate_rate = 0.0
+aggregation_options     = sum
+
+# node bias options
+bias_init_mean          = 0.0
+bias_init_stdev         = 1.0
+bias_max_value          = 30.0
+bias_min_value          = -30.0
+# Potencial de mutação reduzido pela metade 50%
+bias_mutate_power       = 0.5
+# Chance de haver uma mutação, 70%
+bias_mutate_rate        = 0.7
+# Chance 10%, ao invés de pegar o bias anterior e fazer uma conta com ele, o algorítmo tem 10%
+# de chance de simplesmente substituir o bias por outro número aleatório entre -30 e 30
+bias_replace_rate       = 0.1
+
+# genome compatibility options
+# como o sistema entende que uma espécie é diferente de outra
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+# connection add/remove rates
+# Chance de ser adicionado ou removido as conexões entre os nodes(não os nodes)
+conn_add_prob           = 0.5
+conn_delete_prob        = 0.5
+
+# connection enable options
+# Todas as conexões estão ativas
+# 1% de chance do sistema criar uma nova camada
+enabled_default         = True
+enabled_mutate_rate     = 0.01
+
+# Alimentar para frente, ou para a direita
+feed_forward            = True
+# Todos o nós input estão conectados no nó output
+initial_connection      = full
+
+# node add/remove rates
+# Chance de adicionar um node novo
+node_add_prob           = 0.2
+node_delete_prob        = 0.2
+
+# network parameters
+# num_hidden - são nós intermediárias que não são nem inputs nem outputs
+num_hidden              = 0
+num_inputs              = 3
+num_outputs             = 1
+
+# node response options
+# Multiplicar o output com um valor, neste caso o valor será 1, 
+# já que ele não é alterado
+response_init_mean      = 1.0
+response_init_stdev     = 0.0
+response_max_value      = 30.0
+response_min_value      = -30.0
+response_mutate_power   = 0.0
+response_mutate_rate    = 0.0
+response_replace_rate   = 0.0
+
+# connection weight options
+# init_mean = 0, significa que o valor inicial é aleatório
+weight_init_mean        = 0.0
+weight_init_stdev       = 1.0
+weight_max_value        = 30
+weight_min_value        = -30
+weight_mutate_power     = 0.5
+weight_mutate_rate      = 0.8
+weight_replace_rate     = 0.1
+
+[DefaultSpeciesSet]
+# Forma que o sistema identifica as espécias, se o valor for muito alto
+# o sistema pode considerar todos os pássaros da mesma espécie
+compatibility_threshold = 3.0
+
+[DefaultStagnation]
+# Objetivos das espécies é maximizar a pontuação
+species_fitness_func = max
+# Species that have not shown improvement in more than this number of
+# generations will be considered stagnant and removed. This defaults to 15.
+max_stagnation       = 20
+# Se a estagnação acontecer com todas as espécies, o código não deve matar todas elas
+# 2 espécies devem ser mantidas.
+species_elitism      = 2
+
+[DefaultReproduction]
+# Quantidades de indivíduos mais aptos de uma espécies
+# que será preservada sem alteração para a próxima geração.
+elitism            = 2
+# No máximo 20% de uma mesma espécie pode ser reproduzida para a próxima geração.
+survival_threshold = 0.2
